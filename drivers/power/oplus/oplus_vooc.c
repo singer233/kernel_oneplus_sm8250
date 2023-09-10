@@ -100,7 +100,7 @@ bool oplus_vooc_get_fw_update_status(void)
 		return g_vooc_chip->mcu_update_ing;
 	}
 }
-void oplus_vooc_battery_update()
+void oplus_vooc_battery_update(void)
 {
 	struct oplus_vooc_chip *chip = g_vooc_chip;
 
