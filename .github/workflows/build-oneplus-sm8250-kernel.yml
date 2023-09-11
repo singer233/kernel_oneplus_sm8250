@@ -6,11 +6,7 @@ on:
       - cron: '0 21 * * *'
   push:
     branches:
-      - "lineage-20"
-    paths-ignore:
-      - 'README.md'
-      - 'flake.nix'
-      - 'flake.lock'
+      - HEAD
   pull_request:
       branches:
       - HEAD
@@ -54,7 +50,7 @@ jobs:
         export PATH=$(pwd)/clang/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
-        make $KERNEL_CMDLINE oldconfig CC="ccache clang"
+        make $KERNEL_CMDLINE $KERNEL_DEFCONFIG CC="ccache clang"
         make $KERNEL_CMDLINE CC="ccache clang" -j$(nproc --all)
     - name: Upload Kernel
       uses: actions/upload-artifact@v3
