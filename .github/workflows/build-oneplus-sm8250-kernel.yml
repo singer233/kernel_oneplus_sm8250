@@ -45,18 +45,18 @@ jobs:
       id: get_time
       run: |
         echo "TIME=$(TZ=UTC-8 date +%m%d%H%M )" >> $GITHUB_OUTPUT
-    - name: Build Kernel
-      run: |
-        export PATH=$(pwd)/clang/bin/:$PATH
-        export ARCH=arm64
-        export SUBARCH=arm64
-        make $KERNEL_CMDLINE $KERNEL_DEFCONFIG CC="ccache clang"
-        make $KERNEL_CMDLINE CC="ccache clang" -j$(nproc --all)
-    - name: Upload Kernel
-      uses: actions/upload-artifact@v3
-      with:
-         name: Origin-kernel-${{ steps.get_time.outputs.TIME }}
-         path: "out/arch/arm64/boot/Image"
+#    - name: Build Kernel
+#      run: |
+#       export PATH=$(pwd)/clang/bin/:$PATH
+#       export ARCH=arm64
+#       export SUBARCH=arm64
+#       make $KERNEL_CMDLINE $KERNEL_DEFCONFIG CC="ccache clang"
+#       make $KERNEL_CMDLINE CC="ccache clang" -j$(nproc --all)
+#   - name: Upload Kernel
+#     uses: actions/upload-artifact@v3
+#     with:
+#        name: Origin-kernel-${{ steps.get_time.outputs.TIME }}
+#        path: "out/arch/arm64/boot/Image"
 
     - name: Build Kernel-SU
       run: |
